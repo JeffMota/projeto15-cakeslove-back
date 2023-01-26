@@ -1,7 +1,7 @@
 
-import { signIn, signUp } from "../controller/Auth.js"
+// import { signIn, signUp } from "../controller/Auth.js"
 import { Router } from 'express'
-import { validateSchema } from "../middleware/validateSchema.js"
+import { validateSchema } from "../middleware/ValidateSchema.js"
 
 
 
