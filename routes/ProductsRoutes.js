@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { listProducts } from '../controller/Product.js'
+import { betterSellers, listProducts } from '../controller/Product.js'
 import { validateSchema } from '../middleware/ValidateSchema.js'
 
 const productRouter = Router()
@@ -8,7 +8,7 @@ const productRouter = Router()
 // Listar todos os produtos
 productRouter.get("/produtos", listProducts)
 
-// Listar os produtos mais vendidos
-productRouter.get("/produtos/mais-vendidos")
+//Listar os mais vendidos / Por enquanto só retorna aleatóriamente
+productRouter.get("/produtos/mais-vendidos", betterSellers)
 
 export default productRouter
