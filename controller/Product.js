@@ -35,3 +35,13 @@ export async function betterSellers(req, res) {
     }
 
 }
+//Cadastrar Produto
+export async function registerProduct(req, res) {
+    const { name, description, price, quantity, imgURL } = req.body
+    try {
+        await db.collection('products').insertOne({ name, description, price, quantity, imgURL })
+        res.sendStatus(201)
+    } catch (error) {
+        res.status(500).send(error.message)
+    }
+}
