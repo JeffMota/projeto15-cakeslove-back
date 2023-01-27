@@ -1,6 +1,7 @@
 import db from '../config/database.js'
 import bcrypt from 'bcrypt'
 import { registrationUserSchema } from '../schema/AuthSchema.js'
+import { ObjectId } from 'mongodb'
 
 export async function signUpValidation(req, res, next) {
   const user = req.body
@@ -35,7 +36,7 @@ export async function signInValidation(req, res, next) {
 
     res.locals.user = user
   } catch (error) {
-    console.error(error)
+    console.error(error.message)
     res.status(500).send('Houve um problema no servidor')
   }
 
@@ -52,14 +53,14 @@ export async function authorizationValidation(req, res, next) {
     const checkSession = await db.collection("sessions").findOne({ token })
     if (!checkSession) return res.status(401).send("Não autorizado")
 
-    const user = await usersCollection.findOne({ _id: checkSession.userId })
+    const user = await db.collection("users").findOne({ _id: ObjectId(checkSession.user) })
 
-    if (!user) return res.status(401).send("Não autorizado")
+    if (!user) return res.status(401).send("Não autorizado aqui")
 
     res.locals.user = user
 
   } catch (error) {
-    console.erro(error)
+    console.error(error.message)
     res.status(500).send("Houve um problema no servidor")
   }
 
