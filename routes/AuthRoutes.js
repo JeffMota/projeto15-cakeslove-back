@@ -1,14 +1,12 @@
 
-// import { signIn, signUp } from "../controller/Auth.js"
 import { Router } from 'express'
-import { validateSchema } from "../middleware/ValidateSchema.js"
-
+import { signIn, signUp } from '../controller/Auth.js'
+import { signInValidation, signUpValidation } from '../middleware/AuthMiddleware.js'
 
 
 const authRouter = Router()
 
-// Rotas de autenticação
-authRouter.post("/sign-up")
-authRouter.post("/sign-in")
+authRouter.post("/sign-up", signUpValidation, signUp)
+authRouter.post("/sign-in", signInValidation, signIn)
 
 export default authRouter  
