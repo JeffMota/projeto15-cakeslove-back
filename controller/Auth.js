@@ -11,7 +11,7 @@ export async function signUp(req, res) {
 
     try {
 
-        await db.collection("users").insertOne({ ...user, password: passwordHashed })
+        await db.collection("users").insertOne({ name: user.name, email: user.email, password: passwordHashed })
 
         res.status(201).send("usuário cadastrado")
 
