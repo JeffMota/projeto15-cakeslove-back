@@ -45,6 +45,7 @@ export async function signInValidation(req, res, next) {
 
 export async function authorizationValidation(req, res, next) {
   const { authorization } = req.headers
+  if (!authorization) return res.status(401).send("Não autorizado")
   const token = authorization?.replace("Bearer ", "")
 
   if (!token) return res.status(401).send("Não autorizado")
