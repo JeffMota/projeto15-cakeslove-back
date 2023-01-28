@@ -31,9 +31,9 @@ export async function signIn(req, res) {
         if (alreadyExist) {
             const token = uuidV4();
 
-            await db.collection('sessions').updateOne(
+            await db.collection("sessions").updateOne(
                 {
-                    _id: ObjectId(user._id)
+                    user: ObjectId(user._id)
                 },
                 {
                     $set: {
@@ -42,7 +42,7 @@ export async function signIn(req, res) {
                     }
                 }
             )
-            return res.status(200).send({ token })
+            return res.status(200).send(token)
         }
 
         const token = uuidV4();
