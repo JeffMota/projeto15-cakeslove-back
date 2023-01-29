@@ -1,7 +1,8 @@
 import { Router } from 'express'
 import { betterSellers, listProducts, registerProduct } from '../controller/Product.js'
 import { authorizationValidation } from '../middleware/AuthMiddleware.js'
-import validateSchema from '../middleware/ProductMiddleware.js'
+import validateSchema from '../middleware/ValidateSchema.js'
+
 import { productSchema } from '../schema/ProductSchema.js'
 
 
