@@ -10,3 +10,4 @@ authRouter.post("/sign-up", signUpValidation, signUp)
 authRouter.post("/sign-in", signInValidation, signIn)
 
 export default authRouter  
+
