@@ -11,7 +11,7 @@ export async function signUp(req, res) {
 
     try {
 
-        await db.collection("users").insertOne({ name: user.name, email: user.email, password: passwordHashed })
+        await db.collection("users").insertOne({ name: user.name, email: user.email, password: passwordHashed, admin: user.admin })
 
         res.status(201).send("usuário cadastrado")
 
@@ -42,14 +42,14 @@ export async function signIn(req, res) {
                     }
                 }
             )
-            return res.status(200).send(token)
+            return res.status(200).send({ token, admin: user.admin })
         }
 
         const token = uuidV4();
 
         const teste = await db.collection("sessions").insertOne({ user: user._id, token })
 
-        return res.status(200).send({ token })
+        return res.status(200).send({ token, admin: user.admin })
 
     } catch (error) {
         res.status(500).send(error.message)
