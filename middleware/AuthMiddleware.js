@@ -55,7 +55,7 @@ export async function authorizationValidation(req, res, next) {
     if (!checkSession) return res.status(401).send("Não autorizado")
 
     const user = await db.collection("users").findOne({ _id: ObjectId(checkSession.user) })
-
+   
     if (!user) return res.status(401).send("Não autorizado aqui")
 
     res.locals.user = user

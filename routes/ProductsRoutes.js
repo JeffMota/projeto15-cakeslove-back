@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { betterSellers, listProducts, registerProduct } from '../controller/Product.js'
+import { betterSellers, deleteProduct, listProducts, registerProduct } from '../controller/Product.js'
 import { authorizationValidation } from '../middleware/AuthMiddleware.js'
 import validateSchema from '../middleware/ValidateSchema.js'
 import { productSchema } from '../schema/ProductSchema.js'
@@ -17,5 +17,9 @@ productRouter.get("/produtos/mais-vendidos", betterSellers)
 
 // Cadastrar um produto
 productRouter.post("/produtos", validateSchema(productSchema), registerProduct)
+
+// Deletar um produto
+productRouter.delete("/produtos/:id", deleteProduct)
+
 
 export default productRouter
